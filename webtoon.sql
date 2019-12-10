@@ -71,7 +71,7 @@ CREATE TABLE IF NOT EXISTS `webtoon`.`buy` (
   `b_readerid` INT(11) NOT NULL,
   `b_wtoonid` INT(11) NOT NULL,
   `price` INT(11) NOT NULL,
-  PRIMARY KEY (`buyid`),
+  PRIMARY KEY (`buyid`, `b_readerid`, `b_wtoonid`),
   INDEX `fk_webtoon_has_reader_reader1_idx` (`b_readerid` ASC) VISIBLE,
   INDEX `fk_webtoon_has_reader_webtoon1_idx` (`b_wtoonid` ASC) VISIBLE,
   CONSTRAINT `fk_webtoon_has_reader_reader1`
@@ -139,6 +139,7 @@ CREATE TABLE IF NOT EXISTS `webtoon`.`login` (
   `id` VARCHAR(45) NOT NULL,
   `pwd` VARCHAR(45) NOT NULL,
   INDEX `fk_login_writer1_idx` (`l_writerid` ASC) VISIBLE,
+  PRIMARY KEY (`l_writerid`),
   CONSTRAINT `fk_login_writer1`
     FOREIGN KEY (`l_writerid`)
     REFERENCES `webtoon`.`writer` (`writerid`)
